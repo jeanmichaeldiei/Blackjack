@@ -1,0 +1,95 @@
+#include "card.h"
+
+/*
+ *  The constructor for the Card class.
+ *  Fills the members of the Card based on the parameters
+ *
+ *  parameters:
+ *      r - a value from the enumeration rank
+ *      s - a suit from the enumeration suit
+ *      ifu - a boolean tell us whether the card is face up or not
+ */
+
+Card::Card(rank r, suit s, bool ifu):  m_Rank(r), m_Suit(s), m_IsFaceUp(ifu)
+{} 
+
+/*
+ * Return the blackjack numerical value of a card
+ *
+ * Parameters: None
+ * Return:
+ *      If the card is face down, return 0
+ *      Otherwise follow this scheme:
+ *      For an Ace, return 1
+ *      For 2-9 return, return their value
+ *      For 10, Jack, Queen, King return 10
+ *
+ */
+int Card::GetValue() const
+{
+    //if a cards is face down, its value is 0
+    int value = 0;
+    if (m_IsFaceUp)
+    {
+        //value is number showing on card
+        value = m_Rank;
+        //value is 10 for face cards
+        if (value > 10)
+            value = 10;
+    }
+    return value;
+}
+
+/*
+ *  Flip the boolean.
+ *  If the card was previously face down, now it is face up
+ *  If the card was previously face up, now it is face down
+ *
+ *  Parameters: None
+ *  Returns: None
+ */
+void Card::Flip()
+{
+    m_IsFaceUp = !(m_IsFaceUp);
+}
+
+
+/*
+ * Overloads << operator so Card object can be sent to cout
+ * If a card is face down, print "XX"
+ * Otherwise print the rank followed by the suit
+ *
+ * Parameters:
+ *      lefthand side: a reference to an output stream
+ *      righthand side: a reference to the card we wish to print
+ *
+ * Returns:
+ *      a reference to an output stream
+ */
+std::ostream& operator<<(std::ostream& os, const Card& aCard)
+{
+    const std::string RANKS[] = {"0", "A", "2", "3", "4", "5", "6", "7", "8", "9", 
+                            "10", "J", "Q", "K"};
+    const std::string SUITS[] = {"c", "d", "h", "s"};
+
+    /*
+     * The following code will not always work because it depends on the given machine
+     * These are the unicode values for a club, diamond, heart, and spade respectively
+     * Your machine may even have more useful ones! Did you know all 52 cards exist in unicode?
+     * 
+     * Unicode 6.0 has some actual card values you can check them out here:
+     * https://en.wikipedia.org/wiki/Playing_cards_in_Unicode
+     * Try it out and see what you get. You may have found the easiest way to add graphics to your game
+     * If your machine does not support these imagines, it will print garbage values. In which case you
+     * should revert back to the ascii values c, d, h, and s.
+     */
+    const std::string UNICODE[] = {"\u2663", "\u2666", "\u2665", "\u2660"};
+
+    if (aCard.m_IsFaceUp)
+        os << RANKS[aCard.m_Rank] << SUITS[aCard.m_Suit];
+        //os << RANKS[aCard.m_Rank] << UNICODE[aCard.m_Suit];
+    else
+        os << "XX";
+
+    return os;
+}
