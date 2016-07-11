@@ -11,7 +11,11 @@
  */
 
 Card::Card(rank r, suit s, bool ifu)
-{} 
+{
+	m_Rank = r;
+	m_Suit = s;
+	m_IsFaceUp = ifu;
+} 
 
 /*
  * Return the blackjack numerical value of a card
@@ -27,7 +31,7 @@ Card::Card(rank r, suit s, bool ifu)
  */
 int Card::GetValue() const
 {
-    return 0;
+    return (signed int)m_Rank;
 }
 
 /*
@@ -39,7 +43,9 @@ int Card::GetValue() const
  *  Returns: None
  */
 void Card::Flip()
-{}
+{
+	m_IsFaceUp = !m_IsFaceUp;
+}
 
 
 /*
@@ -56,5 +62,11 @@ void Card::Flip()
  */
 std::ostream& operator<<(std::ostream& os, const Card& aCard)
 {
+	if(aCard.m_IsFaceUp) {
+		os<< aCard.m_Rank << " " << aCard.m_Suit;
+	}
+	else {
+		os<< "XX\n";
+	}
     return os;
 }
