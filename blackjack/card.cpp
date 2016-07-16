@@ -31,6 +31,12 @@ Card::Card(rank r, suit s, bool ifu)
  */
 int Card::GetValue() const
 {
+	if(!m_IsFaceUp) {
+		return 0;
+	}
+	if (m_Rank == JACK || m_Rank == QUEEN || m_Rank == KING) {
+		return 10;
+	}
     return (signed int)m_Rank;
 }
 

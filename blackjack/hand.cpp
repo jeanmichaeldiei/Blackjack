@@ -12,7 +12,9 @@ Hand::Hand()
  * REMEMBER every class that inherits from Hand will call this method
  */
 Hand::~Hand()  
-{}
+{
+	Clear();
+}
 
 /*
  * Add a card to your hand
@@ -21,7 +23,9 @@ Hand::~Hand()
  * Returns: None
  */
 void Hand::Add(Card* pCard)
-{}
+{
+	m_Cards.push_back(pCard);
+}
  
 /*
  * Cleans up all of the cards in our Hand.
@@ -31,7 +35,16 @@ void Hand::Add(Card* pCard)
  * Returns: None
  */
 void Hand::Clear()
-{}
+{
+	std::vector<Card*>::const_iterator start = m_Cards.begin();
+	std::vector<Card*>::const_iterator end = m_Cards.end();
+
+	while(start != end) {
+		delete *start;
+		start++;
+	}
+	m_Cards.clear();
+}
 
 /*
  * Get the total points for our hand. Add up the points for each card
@@ -46,5 +59,33 @@ void Hand::Clear()
  */
 int Hand::GetTotal() const
 {
-    return 0;
+	if (m_Cards.size() == 0) {
+		return 0;
+	}
+	std::vector<Card*>::const_iterator start = m_Cards.begin();
+	std::vector<Card*>::const_iterator end = m_Cards.end();
+
+	//Finding total while also checking if card is face down.
+	//What to do if there are more than one Ace?
+	int aceCount = 0;
+	int total = 0;
+	while(start != end) {
+		if((*start)->GetValue() == 0) {
+			return 0;
+		}
+		total += (*start)->GetValue();
+		if((*start)->GetValue() == 1) {
+			aceCount++;
+		}
+		start++;
+	}
+
+	while (aceCount > 0) {
+		if (total + 10 <= 21) {
+			total += 10;
+		}
+		aceCount--;	
+	}
+	return total;
+
 }
