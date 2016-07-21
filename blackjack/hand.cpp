@@ -70,10 +70,9 @@ int Hand::GetTotal() const
 	int aceCount = 0;
 	int total = 0;
 	while(start != end) {
-		if((*start)->GetValue() == 0) {
-			return 0;
+		if((*start)->GetValue() != 0) {
+			total += (*start)->GetValue();
 		}
-		total += (*start)->GetValue();
 		if((*start)->GetValue() == 1) {
 			aceCount++;
 		}
