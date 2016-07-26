@@ -7,7 +7,16 @@
  * Parameters: None
  */
 Deck::Deck()
-{}
+{
+	int cardCount = 0;
+	int rankCount = 1;
+	for (cardCount = 0; cardCount < 52; cardCount++, rankCount++) {
+		if(rankCount == 13) {
+			rankCount = 1;
+		}
+		Add(new Card(rankCount % 13, cardCount / 13, false));
+	}
+}
 
 /*
  * Destructor for the Deck. Don't forget the destructor for Hand will be called after this.
@@ -24,7 +33,20 @@ Deck::~Deck()
  * Returns: None
  */
 void Deck::Populate()
-{}
+{
+	Clear();
+	int cardCount = 0;
+	int rankCount = 1;
+	for (cardCount = 0; cardCount < 52; cardCount++, rankCount++) {
+
+		if(rankCount == 13) {
+			rankCount = 1;
+		}
+		Add(new Card(rankCount % 13, cardCount / 13, false));
+	}
+
+	
+}
 
 /*
  * Shuffles all of the cards in the deck
@@ -34,7 +56,9 @@ void Deck::Populate()
  * Returns: None
  */
 void Deck::Shuffle()
-{}
+{
+	std::random_shuffle(m_Cards.begin(), m_Cards.end());
+}
 
 /*
  * Deal one card from the deck to a Hand. If the deck has no cards remaining print out
@@ -44,7 +68,14 @@ void Deck::Shuffle()
  * Returns: None
  */
 void Deck::Deal(Hand& aHand)
-{}
+{
+	if (m_Cards.size() == 0) {
+		std::cout << "Out of cards. Unable to deal.";
+		return;
+	}
+	aHand.Add(m_Cards.back);
+	m_Cards.pop_back();
+}
 
 
 /*

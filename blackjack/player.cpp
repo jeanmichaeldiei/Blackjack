@@ -6,7 +6,9 @@
  * Call the super constructor with the given name
  */
 Player::Player(const std::string& name)
-{}
+{
+	GenericPlayer(name);
+}
 
 /*
  * Player destructor
@@ -37,6 +39,16 @@ Player::~Player()
  */
 bool Player::IsHitting() const
 {
+	char ans;
+	do {
+		std::cout<< m_Name << ", do you want a hit? (Y/N): ";
+		std::cin >> ans;
+
+	}while(ans != 'y' || ans!= 'Y' || ans != 'n' || ans != 'N');
+
+	if (ans == 'Y' || ans == 'y') {
+		return true;
+	}
 	return false;
 }
 
@@ -48,7 +60,9 @@ bool Player::IsHitting() const
  * Returns: None
  */
 void Player::Win() const
-{}
+{
+	std::cout<< m_Name << "wins";
+}
 
 /*
  * Announce to the player that they have lost. Use the message:
@@ -58,7 +72,10 @@ void Player::Win() const
  * Returns: None
  */
 void Player::Lose() const
-{}
+{
+	std::cout<< m_Name << "loses";
+}
+
 
 /*
  * Announce to the player that they have pushed (tied). Use the message:
@@ -68,4 +85,7 @@ void Player::Lose() const
  * Returns: None
  */
 void Player::Push() const
-{}
+{
+	std::cout<< m_Name << "pushes";
+}
+
