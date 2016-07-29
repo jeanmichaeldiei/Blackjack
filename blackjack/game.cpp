@@ -12,7 +12,18 @@
  * Parameters: A reference to a std::vector filled with names of the players
  */
 Game::Game(const std::vector<std::string>& names)
-{}
+{
+	//Initializing deck
+	m_Deck = new Deck();
+	m_Deck.Populate();
+	m_Deck.Shuffle();
+
+	//Creating list of Players given names.
+	int i = 0;
+	for (i = 0; i < names.size(); i++) {
+		m_Players.push_back(new Player(names[i]));
+	}
+}
 
 /*
  * The destructor for the blackjack game.
