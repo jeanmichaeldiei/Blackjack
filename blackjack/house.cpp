@@ -7,7 +7,9 @@
  * Parameters: A reference to a std::string name
  */
 House::House(const std::string& name)
-{}
+{
+	GenericPlayer(name);
+}
 
 /*
  * The destructor for the House object
@@ -30,7 +32,10 @@ House::~House()
  */
 bool House::IsHitting() const
 {
-    return false;
+    if (GetTotal() <= 16) {
+	    return true;
+    }
+	return false;
 }   
 
 /*
@@ -42,4 +47,10 @@ bool House::IsHitting() const
  * Returns: None
  */
 void House::FlipFirstCard()
-{}
+{
+	if (m_Cards.size() < 1) {
+		std::cout << "No card to flip!\n";
+		return;
+	}
+	m_Cards.front().Flip();
+}
