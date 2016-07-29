@@ -35,7 +35,7 @@ Deck::~Deck()
 void Deck::Populate()
 {
 	Clear();
-	int cardCount = 0;
+	int cardCount;
 	int rankCount = 1;
 	for (cardCount = 0; cardCount < 52; cardCount++, rankCount++) {
 
