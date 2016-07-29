@@ -5,9 +5,9 @@
  * 
  * Call the super constructor with the given name
  */
-Player::Player(const std::string& name)
+Player::Player(const std::string& name) : GenericPlayer(name)
 {
-	GenericPlayer(name);
+//	GenericPlayer(name);
 }
 
 /*

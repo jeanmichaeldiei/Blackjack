@@ -6,9 +6,9 @@
  *
  * Parameters: A reference to a std::string name
  */
-House::House(const std::string& name)
+House::House(const std::string& name) : GenericPlayer(name)
 {
-	GenericPlayer(name);
+//	GenericPlayer(name);
 }
 
 /*
@@ -52,5 +52,5 @@ void House::FlipFirstCard()
 		std::cout << "No card to flip!\n";
 		return;
 	}
-	m_Cards.front().Flip();
+	m_Cards.front()->Flip();
 }

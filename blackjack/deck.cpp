@@ -14,7 +14,7 @@ Deck::Deck()
 		if(rankCount == 13) {
 			rankCount = 1;
 		}
-		Add(new Card(rankCount % 13, cardCount / 13, false));
+		Add(new Card(Card::rank(rankCount % 13), Card::suit(cardCount / 13), false));
 	}
 }
 
@@ -42,7 +42,7 @@ void Deck::Populate()
 		if(rankCount == 13) {
 			rankCount = 1;
 		}
-		Add(new Card(rankCount % 13, cardCount / 13, false));
+		Add(new Card(Card::rank(rankCount % 13), Card::suit(cardCount / 13), false));
 	}
 
 	
@@ -73,7 +73,7 @@ void Deck::Deal(Hand& aHand)
 		std::cout << "Out of cards. Unable to deal.";
 		return;
 	}
-	aHand.Add(m_Cards.back);
+	aHand.Add(m_Cards.back());
 	m_Cards.pop_back();
 }
 
@@ -98,7 +98,7 @@ void Deck::AdditionalCards(GenericPlayer& aGenericPlayer)
 		Deal(aGenericPlayer);
 		std::cout << aGenericPlayer;
 
-		if (aGenericPlayer.IsBusted)  {
+		if (aGenericPlayer.IsBusted())  {
 			aGenericPlayer.Bust();
 		}
 	}
