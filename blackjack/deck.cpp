@@ -92,4 +92,14 @@ void Deck::Deal(Hand& aHand)
  * Returns: None
  */
 void Deck::AdditionalCards(GenericPlayer& aGenericPlayer)
-{} 
+{
+	//if or while?
+	while (aGenericPlayer.IsBusted() == false && aGenericPlayer.IsHitting()) {
+		Deal(aGenericPlayer);
+		std::cout << aGenericPlayer;
+
+		if (aGenericPlayer.IsBusted)  {
+			aGenericPlayer.Bust();
+		}
+	}
+} 
