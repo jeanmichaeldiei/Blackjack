@@ -12,16 +12,16 @@
  * Parameters: A reference to a std::vector filled with names of the players
  */
 Game::Game(const std::vector<std::string>& names)
-{
+
+{	
 	//Initializing deck
-	m_Deck = new Deck();
 	m_Deck.Populate();
 	m_Deck.Shuffle();
 
 	//Creating list of Players given names.
-	int i = 0;
+	unsigned int i = 0;
 	for (i = 0; i < names.size(); i++) {
-		m_Players.push_back(new Player(names[i]));
+		m_Players.push_back(Player(names[i]));
 	}
 }
 
@@ -29,7 +29,17 @@ Game::Game(const std::vector<std::string>& names)
  * The destructor for the blackjack game.
  */
 Game::~Game()
-{}
+{
+	m_Deck.Clear();
+	m_House.Clear();
+	//delete m_players;
+
+	unsigned int i = 0;
+	for (i = 0; i < m_Players.size(); i++) {
+		m_Players[i].Clear();
+	}
+	m_Players.clear();
+}
 
 /*
  * All of the logic to play the blackjack game. You will need to follow the rules here.
@@ -62,5 +72,68 @@ Game::~Game()
  * Returns: None
  */
 void Game::Play()
-{}
+{
+	//Deals two cards to every player and flip the first House card.
+	unsigned int i = 0;
+	for (i = 0; i < m_Players.size(); i++) {
+		m_Deck.Deal(m_Players[i]);
+	}
+	m_Deck.Deal(m_House);
+	m_House.FlipFirstCard();
 
+	for (i = 0; i < m_Players.size(); i++) {
+		m_Deck.Deal(m_Players[i]);
+	}
+	m_Deck.Deal(m_House);
+
+
+	//Display the hand to every player.
+	for (i = 0; i < m_Players.size(); i++) {
+		std::cout << m_Players[i];
+	}
+	std::cout << m_House;
+
+
+	//Dealing additional cards to players.
+	for (i = 0; i < m_Players.size(); i++) {
+		m_Deck.AdditionalCards(m_Players[i]);
+	}
+
+
+	//House's turn to recieve cards	
+	m_House.FlipFirstCard();
+	std::cout << m_House;
+	m_Deck.AdditionalCards(m_House);
+
+	//Win conditions.
+	if(m_House.IsBusted()) {
+		for (i = 0; i < m_Players.size(); i++) {
+			if(!m_Players[i].IsBusted()) {
+				m_Players[i].Win();
+			}
+		}
+	}
+
+	else {
+		for (i = 0; i < m_Players.size(); i++) {
+			if(m_House.GetTotal() > m_Players[i].GetTotal()) {
+				m_Players[i].Lose();
+			}
+
+			if(m_House.GetTotal() == m_Players[i].GetTotal()) {
+				m_Players[i].Push();
+			}
+
+			if(m_House.GetTotal() < m_Players[i].GetTotal()) {
+				m_Players[i].Win();
+			}
+
+		}
+	}
+
+	//Clear house and player hands.
+	for (i = 0; i < m_Players.size(); i++) {
+		m_Players[i].Clear();
+	}
+	m_House.Clear();
+}
