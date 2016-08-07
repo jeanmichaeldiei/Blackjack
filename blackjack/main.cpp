@@ -13,5 +13,30 @@
  */
 int main()
 {
-    return 0;
+	std::cout << "Welcome to Blackjack!\n";
+	int numPlayers = 0;
+	do {
+		std::cout << "How many players are wishing to play? (up to 7 players)\n";
+		std::cin >> numPlayers;
+	}while(numPlayers < 1 && numPlayers >7);
+	
+	std::vector<std::string> names;
+	
+	int i = 0;
+	std::string aName;
+
+	for (i = 0; i < numPlayers; i++) {
+		std::cout << "Player " << i + 1<< " name: ";
+		std::cin >> aName;
+		names.push_back(aName);
+	}
+	char ans = 'y';
+	while(ans == 'y' || ans == 'Y') {
+		Game game (names);
+		game.Play();
+		std::cout<< "Do you wish to play again?(y/n)\n";
+		std::cin >> ans;
+	}
+	std::cout << "Hope you had fun! Goodbye.\n";
+	return 0;
 }

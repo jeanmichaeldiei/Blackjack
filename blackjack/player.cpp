@@ -44,8 +44,8 @@ bool Player::IsHitting() const
 		std::cout<< m_Name << ", do you want a hit? (Y/N): ";
 		std::cin >> ans;
 
-	}while(ans != 'y' || ans!= 'Y' || ans != 'n' || ans != 'N');
-
+	}while(ans != 'y' && ans!= 'Y' && ans != 'n' && ans != 'N');
+	
 	if (ans == 'Y' || ans == 'y') {
 		return true;
 	}
@@ -61,7 +61,7 @@ bool Player::IsHitting() const
  */
 void Player::Win() const
 {
-	std::cout<< m_Name << "wins";
+	std::cout<< m_Name << " wins\n";
 }
 
 /*
@@ -73,7 +73,7 @@ void Player::Win() const
  */
 void Player::Lose() const
 {
-	std::cout<< m_Name << "loses";
+	std::cout<< m_Name << " loses\n";
 }
 
 
@@ -86,6 +86,6 @@ void Player::Lose() const
  */
 void Player::Push() const
 {
-	std::cout<< m_Name << "pushes";
+	std::cout<< m_Name << " pushes\n";
 }
 

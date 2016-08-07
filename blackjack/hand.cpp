@@ -60,6 +60,7 @@ void Hand::Clear()
 int Hand::GetTotal() const
 {
 	if (m_Cards.size() == 0) {
+		std::cout << "Size is zero\n";
 		return 0;
 	}
 	std::vector<Card*>::const_iterator start = m_Cards.begin();

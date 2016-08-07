@@ -1,7 +1,8 @@
-all:
+all: blackjack
 
 blackjack:
-	echo "fill in here"
+	g++ -Wall -g -Werror -std=c++11 -o blackjack card.cpp deck.cpp game.cpp genericplayer.cpp hand.cpp house.cpp main.cpp player.cpp
+	
 
 clean:
-	echo "fill in here"
+	rm -f blackjack *.o

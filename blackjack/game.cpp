@@ -120,11 +120,11 @@ void Game::Play()
 				m_Players[i].Lose();
 			}
 
-			if(m_House.GetTotal() == m_Players[i].GetTotal()) {
+			if(m_House.GetTotal() == m_Players[i].GetTotal() && m_Players[i].GetTotal() <= 21) {
 				m_Players[i].Push();
 			}
 
-			if(m_House.GetTotal() < m_Players[i].GetTotal()) {
+			if(m_House.GetTotal() < m_Players[i].GetTotal() && m_Players[i].GetTotal() <= 21) {
 				m_Players[i].Win();
 			}
 

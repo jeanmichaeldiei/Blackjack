@@ -78,6 +78,6 @@ std::ostream& operator<<(std::ostream& os, const GenericPlayer& aGenericPlayer)
 		}
 
 	}
-	os << total;
+	os << total << "\n";
 	return os;
 }

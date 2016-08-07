@@ -14,7 +14,8 @@ Deck::Deck()
 		if(rankCount == 13) {
 			rankCount = 1;
 		}
-		Add(new Card(Card::rank(rankCount % 13), Card::suit(cardCount / 13), false));
+		//should the cards be face down or up?
+		Add(new Card(Card::rank(rankCount % 13), Card::suit(cardCount / 13), true));
 	}
 }
 
@@ -35,14 +36,15 @@ Deck::~Deck()
 void Deck::Populate()
 {
 	Clear();
-	int cardCount;
+	int cardCount = 0;
 	int rankCount = 1;
 	for (cardCount = 0; cardCount < 52; cardCount++, rankCount++) {
 
 		if(rankCount == 13) {
 			rankCount = 1;
 		}
-		Add(new Card(Card::rank(rankCount % 13), Card::suit(cardCount / 13), false));
+		//face down or up?
+		Add(new Card(Card::rank(rankCount % 13), Card::suit(cardCount / 13), true));
 	}
 
 	
