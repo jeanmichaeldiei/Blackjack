@@ -91,7 +91,7 @@ void Game::Play()
 	for (i = 0; i < m_Players.size(); i++) {
 		std::cout << m_Players[i];
 	}
-	std::cout << m_House;
+	std::cout << m_House << "\n";
 
 
 	//Dealing additional cards to players.
@@ -102,7 +102,7 @@ void Game::Play()
 
 	//House's turn to recieve cards	
 	m_House.FlipFirstCard();
-	std::cout << m_House;
+	std::cout << "\n" << m_House;
 	m_Deck.AdditionalCards(m_House);
 
 	//Win conditions.

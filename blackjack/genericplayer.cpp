@@ -41,7 +41,7 @@ bool GenericPlayer::IsBusted() const
  */
 void GenericPlayer::Bust() const
 {
-	std::cout << m_Name << " busts.\n";
+	std::cout << m_Name << " busts.\n\n";
 }
 
 
@@ -73,7 +73,7 @@ std::ostream& operator<<(std::ostream& os, const GenericPlayer& aGenericPlayer)
 		std::vector<Card*>::const_iterator start = aGenericPlayer.m_Cards.begin();
 		std::vector<Card*>::const_iterator end = aGenericPlayer.m_Cards.end();
 		while(start != end) {
-			os << (**start) << "\t";
+			os << (**start);
 			start++;
 		}
 

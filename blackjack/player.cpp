@@ -49,6 +49,7 @@ bool Player::IsHitting() const
 	if (ans == 'Y' || ans == 'y') {
 		return true;
 	}
+	std::cout << "\n";
 	return false;
 }
 
@@ -61,7 +62,7 @@ bool Player::IsHitting() const
  */
 void Player::Win() const
 {
-	std::cout<< m_Name << " wins\n";
+	std::cout<< m_Name << " wins!\n";
 }
 
 /*
@@ -73,7 +74,7 @@ void Player::Win() const
  */
 void Player::Lose() const
 {
-	std::cout<< m_Name << " loses\n";
+	std::cout<< m_Name << " loses.\n";
 }
 
 
@@ -86,6 +87,6 @@ void Player::Lose() const
  */
 void Player::Push() const
 {
-	std::cout<< m_Name << " pushes\n";
+	std::cout<< m_Name << " pushes.\n";
 }
 

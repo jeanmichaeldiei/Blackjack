@@ -115,10 +115,10 @@ std::ostream& operator<<(std::ostream& os, const Card& aCard)
 				}
 		}
 				
-		os << rankName << " of " << suitName;
+		os << rankName << " of " << suitName << "  |  ";
 	}
 	else {
-		os<< "XX";
+		os<< "XX\t";
 	}
     return os;
 }

@@ -43,6 +43,7 @@ int main()
 		game.Play();
 		std::cout<< "Do you wish to play again?(y/n)\n";
 		std::cin >> ans;
+		std::cout << "\n";
 	}
 	std::cout << "Hope you had fun! Goodbye.\n";
 	return 0;
