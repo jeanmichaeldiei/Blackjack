@@ -1,4 +1,5 @@
 #include "deck.h"
+#include <stdlib.h>
 
 /*
  * Constructor for the Deck class
@@ -59,7 +60,8 @@ void Deck::Populate()
  */
 void Deck::Shuffle()
 {
-	std::random_shuffle(m_Cards.begin(), m_Cards.end());
+	std::random_shuffle(m_Cards.begin(), m_Cards.end());	
+
 }
 
 /*

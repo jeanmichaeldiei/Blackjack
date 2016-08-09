@@ -69,10 +69,56 @@ void Card::Flip()
 std::ostream& operator<<(std::ostream& os, const Card& aCard)
 {
 	if(aCard.m_IsFaceUp) {
-		os<< aCard.m_Rank << " " << aCard.m_Suit;
+		std::string suitName;
+		std::string rankName;
+		switch (aCard.m_Rank) {
+			case Card::ACE: {
+					rankName = "ACE";	
+					break;
+				}
+	
+			case Card::JACK: {
+					rankName = "JACK";
+					break;
+				}
+			case Card::QUEEN: {
+					rankName = "QUEEN";
+					break;
+				}
+			case Card::KING: {
+					rankName = "KING";
+					break;
+				}
+			default: {
+					 rankName = std::to_string(aCard.GetValue());
+				 }
+		}
+
+
+
+		switch (aCard.m_Suit) {
+			case Card::CLUBS: {
+					suitName = "CLUBS";	
+					break;
+				}
+			case Card::DIAMONDS: {
+					suitName = "DIAMONDS"; 
+					break;
+				}
+			case Card::HEARTS: {
+					suitName = "HEARTS";
+					break;
+				}
+			case Card::SPADES: {
+					suitName = "SPADES";
+					break;
+				}
+		}
+				
+		os << rankName << " of " << suitName;
 	}
 	else {
-		os<< "XX\n";
+		os<< "XX";
 	}
     return os;
 }

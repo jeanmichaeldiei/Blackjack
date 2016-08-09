@@ -73,11 +73,11 @@ std::ostream& operator<<(std::ostream& os, const GenericPlayer& aGenericPlayer)
 		std::vector<Card*>::const_iterator start = aGenericPlayer.m_Cards.begin();
 		std::vector<Card*>::const_iterator end = aGenericPlayer.m_Cards.end();
 		while(start != end) {
-			os << (*start) << "\t";
+			os << (**start) << "\t";
 			start++;
 		}
 
 	}
-	os << total << "\n";
+	os << "Total: " << total << "\n";
 	return os;
 }

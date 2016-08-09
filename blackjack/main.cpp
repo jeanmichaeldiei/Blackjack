@@ -13,12 +13,19 @@
  */
 int main()
 {
+
+	std::srand (time(NULL));
 	std::cout << "Welcome to Blackjack!\n";
 	int numPlayers = 0;
 	do {
 		std::cout << "How many players are wishing to play? (up to 7 players)\n";
 		std::cin >> numPlayers;
-	}while(numPlayers < 1 && numPlayers >7);
+		if (std::cin.fail()) {
+			std::cin.clear();
+			std::cin.ignore(100, '\n');
+			std::cout << "Incorrect input\n";
+		}
+	}while(numPlayers < 1 || numPlayers > 7 || std::cin.fail());
 	
 	std::vector<std::string> names;
 	
@@ -26,7 +33,7 @@ int main()
 	std::string aName;
 
 	for (i = 0; i < numPlayers; i++) {
-		std::cout << "Player " << i + 1<< " name: ";
+		std::cout << "Player " << i + 1 << " name: ";
 		std::cin >> aName;
 		names.push_back(aName);
 	}
